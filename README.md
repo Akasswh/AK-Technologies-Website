@@ -1,14 +1,30 @@
 # AK Technologies
 
-## Project structure
+## Project Structure
 
-- `src/` is the Vite/React frontend. It talks to the backend through `src/lib/api.ts`.
-- `backend/` is the Express + MongoDB API. It owns authentication, contact leads, and email notification.
-- `backend/.env.example` contains the server configuration required to run the API.
-- `.env.example` contains the frontend API URL.
+- `frontend/` - Vite + React + TypeScript frontend application. Communicates with backend via `frontend/src/lib/api.ts`.
+- `backend/` - Express + Node.js + MongoDB backend API service. Handles authentication, contact leads, and email notifications.
 
-## Run locally
+## Environment Setup
 
-Install dependencies in the root and in `backend`, configure both `.env` files, then run `npm run dev` in each directory. MongoDB must be available at the `MONGODB_URI` configured for the backend.
+- `frontend/.env.example` - Template for frontend environment variables (`VITE_API_URL`).
+- `backend/.env.example` - Template for backend environment variables (`MONGODB_URI`, `JWT_SECRET`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, etc.).
 
-[![Open in Bolt](https://bolt.new/static/open-in-bolt.svg)](https://bolt.new/~/sb1-xkr2slw7)
+## Quick Start / Local Development
+
+### 1. Frontend Development Server
+```bash
+npm run dev:frontend
+# OR cd frontend && npm run dev
+```
+
+### 2. Backend Development Server
+```bash
+npm run dev:backend
+# OR cd backend && npm run dev
+```
+
+### 3. Build Both
+```bash
+npm run build
+```

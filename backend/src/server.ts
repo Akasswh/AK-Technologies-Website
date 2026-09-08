@@ -88,10 +88,11 @@ app.get('/api/leads', auth, async (_req, res, next) => {
 
 app.patch('/api/leads/:id', auth, async (req, res, next) => {
   try {
-    if (!ObjectId.isValid(req.params.id)) return res.status(400).json({ error: 'Invalid lead id' });
+    const id = req.params.id;
+    if (typeof id !== 'string' || !ObjectId.isValid(id)) return res.status(400).json({ error: 'Invalid lead id' });
     const patch = req.body as Partial<Pick<LeadDocument, 'status' | 'notes'>>;
     const result = await leads().findOneAndUpdate(
-      { _id: new ObjectId(req.params.id) }, { $set: { status: patch.status, notes: patch.notes } }, { returnDocument: 'after' }
+      { _id: new ObjectId(id) }, { $set: { status: patch.status, notes: patch.notes } }, { returnDocument: 'after' }
     );
     if (!result) return res.status(404).json({ error: 'Lead not found' });
     res.json({ lead: serializeLead(result as LeadDocument & { _id: ObjectId }) });
@@ -100,8 +101,9 @@ app.patch('/api/leads/:id', auth, async (req, res, next) => {
 
 app.delete('/api/leads/:id', auth, async (req, res, next) => {
   try {
-    if (!ObjectId.isValid(req.params.id)) return res.status(400).json({ error: 'Invalid lead id' });
-    await leads().deleteOne({ _id: new ObjectId(req.params.id) });
+    const id = req.params.id;
+    if (typeof id !== 'string' || !ObjectId.isValid(id)) return res.status(400).json({ error: 'Invalid lead id' });
+    await leads().deleteOne({ _id: new ObjectId(id) });
     res.status(204).send();
   } catch (error) { next(error); }
 });
