@@ -122,6 +122,11 @@ app.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
-await client.connect();
-await leads().createIndex({ created_at: -1 });
-app.listen(port, () => console.log(`Backend listening on http://localhost:${port}`));
+export default app;
+
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  client.connect().then(() => {
+    leads().createIndex({ created_at: -1 }).catch(console.error);
+    app.listen(port, () => console.log(`Backend listening on http://localhost:${port}`));
+  }).catch(console.error);
+}
