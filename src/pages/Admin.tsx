@@ -6,7 +6,10 @@ import {
   MessageSquare, Building2, Phone, Mail,
   StickyNote
 } from 'lucide-react';
-import { supabase, type ContactLead, type LeadStatus } from '../lib/supabase';
+import {
+  deleteLead, getLeads, hasAdminToken, login, logout, updateLead,
+  type ContactLead, type LeadStatus,
+} from '../lib/api';
 
 /* ─── Constants ─────────────────────────────────────────── */
 
@@ -59,11 +62,10 @@ function LoginView({ onLogin }: { onLogin: () => void }) {
     setError(null);
     if (!email.trim() || !password) { setError('Email and password are required.'); return; }
     setLoading(true);
-    const { error: authErr } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
-    if (authErr) {
-      setError(authErr.message === 'Invalid login credentials'
-        ? 'Invalid email or password.'
-        : authErr.message);
+    try {
+      await login(email.trim(), password);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Invalid email or password.');
       setLoading(false);
       return;
     }
@@ -373,30 +375,18 @@ export default function Admin() {
   // Selected lead for drawer
   const [selected, setSelected] = useState<ContactLead | null>(null);
 
-  // Check auth on mount
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setAuthed(!!data?.session);
-    }).catch(() => {
-      setAuthed(false);
-    });
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setAuthed(!!session);
-    });
-    return () => subscription.unsubscribe();
+    setAuthed(hasAdminToken());
   }, []);
 
   const fetchLeads = useCallback(async () => {
     setLoading(true);
     setFetchError(null);
-    const { data, error } = await supabase
-      .from('contact_leads')
-      .select('*')
-      .order('created_at', { ascending: false });
-    if (error) {
-      setFetchError(error.message);
-    } else {
-      setLeads(data as ContactLead[]);
+    try {
+      setLeads(await getLeads());
+    } catch (err) {
+      setFetchError(err instanceof Error ? err.message : 'Unable to load leads');
+      if (err instanceof Error && err.message === 'Session expired') setAuthed(false);
     }
     setLoading(false);
   }, []);
@@ -406,19 +396,18 @@ export default function Admin() {
   }, [authed, fetchLeads]);
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    logout();
+    setAuthed(false);
   };
 
   const handleUpdate = async (id: string, patch: Partial<ContactLead>) => {
-    const { error } = await supabase.from('contact_leads').update(patch).eq('id', id);
-    if (error) throw new Error(error.message);
+    await updateLead(id, { status: patch.status, notes: patch.notes });
     setLeads((prev) => prev.map((l) => (l.id === id ? { ...l, ...patch } : l)));
     if (selected?.id === id) setSelected((prev) => prev ? { ...prev, ...patch } : prev);
   };
 
   const handleDelete = async (id: string) => {
-    const { error } = await supabase.from('contact_leads').delete().eq('id', id);
-    if (error) throw new Error(error.message);
+    await deleteLead(id);
     setLeads((prev) => prev.filter((l) => l.id !== id));
   };
 

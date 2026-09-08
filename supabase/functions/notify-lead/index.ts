@@ -28,7 +28,7 @@ Deno.serve(async (req: Request) => {
     const lead: LeadPayload = await req.json();
 
     const resendKey = Deno.env.get("RESEND_API_KEY");
-    const notifyEmail = Deno.env.get("NOTIFY_EMAIL") || "akashkiranboddu@gmail.com";
+    const notifyEmail = Deno.env.get("NOTIFY_EMAIL") || "info@aksolutionsandtech.in";
     const senderEmail = Deno.env.get("SENDER_EMAIL") || "onboarding@resend.dev";
 
     // If no Resend key configured, log and return success (graceful degradation)

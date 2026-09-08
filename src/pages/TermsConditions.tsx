@@ -235,8 +235,8 @@ export default function TermsConditions({ onNavigate }: TermsConditionsProps) {
               </p>
               <p>
                 <strong className="text-white">Email:</strong>{' '}
-                <a href="mailto:info@aktechnologies.io" className="text-white underline hover:text-neutral-300">
-                  info@aktechnologies.io
+                <a href="mailto:info@aksolutionsandtech.in" className="text-white underline hover:text-neutral-300">
+                  info@aksolutionsandtech.in
                 </a>
               </p>
               <p>

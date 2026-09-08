@@ -120,12 +120,12 @@ export default function Footer({ onNavigate }: FooterProps) {
             <ul className="space-y-4">
               <li>
                 <a
-                  href="mailto:hello@aktechnologies.io"
+                  href="mailto:info@aksolutionsandtech.in"
                   className="flex items-start gap-3 text-sm transition-colors duration-200 hover:text-white group"
                   style={{ color: '#94A3B8' }}
                 >
                   <Mail size={15} className="mt-0.5 flex-shrink-0 group-hover:text-blue-400 transition-colors" style={{ color: '#2563EB' }} />
-                  hello@aktechnologies.io
+                  info@aksolutionsandtech.in
                 </a>
               </li>
               <li>

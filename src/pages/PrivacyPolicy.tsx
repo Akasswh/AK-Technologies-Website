@@ -157,7 +157,7 @@ export default function PrivacyPolicy({ onNavigate }: PrivacyPolicyProps) {
               <li><strong className="text-white">Right to Withdraw Consent:</strong> Withdraw consent for data processing at any time where consent was previously provided.</li>
             </ul>
             <p className="mt-3">
-              To exercise any of these rights, please submit a written request to us at <a href="mailto:info@aktechnologies.io" className="text-white underline hover:text-neutral-300">info@aktechnologies.io</a>.
+              To exercise any of these rights, please submit a written request to us at <a href="mailto:info@aksolutionsandtech.in" className="text-white underline hover:text-neutral-300">info@aksolutionsandtech.in</a>.
             </p>
           </section>
 
@@ -185,8 +185,8 @@ export default function PrivacyPolicy({ onNavigate }: PrivacyPolicyProps) {
               </p>
               <p>
                 <strong className="text-white">Email:</strong>{' '}
-                <a href="mailto:info@aktechnologies.io" className="text-white underline hover:text-neutral-300">
-                  info@aktechnologies.io
+                <a href="mailto:info@aksolutionsandtech.in" className="text-white underline hover:text-neutral-300">
+                  info@aksolutionsandtech.in
                 </a>
               </p>
               <p>
@@ -197,8 +197,8 @@ export default function PrivacyPolicy({ onNavigate }: PrivacyPolicyProps) {
               </p>
               <p>
                 <strong className="text-white">Website:</strong>{' '}
-                <a href="https://aktechnologies.io" target="_blank" rel="noopener noreferrer" className="text-white underline hover:text-neutral-300">
-                  https://aktechnologies.io
+                <a href="https://aksolutionsandtech.in" target="_blank" rel="noopener noreferrer" className="text-white underline hover:text-neutral-300">
+                  https://aksolutionsandtech.in
                 </a>
               </p>
             </div>

@@ -3,7 +3,7 @@ import {
   Mail, MessageSquare, Send, CheckCircle2,
   Clock, Loader2, AlertCircle
 } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { submitLead } from '../lib/api';
 
 interface ContactProps {
   onNavigate: (page: string) => void;
@@ -94,8 +94,7 @@ export default function Contact({ onNavigate }: ContactProps) {
 
     setSubmitting(true);
     try {
-      // Save lead to Supabase
-      const { error: dbError } = await supabase.from('contact_leads').insert({
+      await submitLead({
         full_name: form.name.trim(),
         email: form.email.trim().toLowerCase(),
         phone: form.phone.trim() || null,
@@ -103,23 +102,7 @@ export default function Contact({ onNavigate }: ContactProps) {
         service_required: form.service || null,
         budget_range: form.budget || null,
         message: form.message.trim(),
-        status: 'New',
       });
-
-      if (dbError) throw new Error(dbError.message);
-
-      // Fire-and-forget email notification via edge function SDK
-      supabase.functions.invoke('notify-lead', {
-        body: {
-          full_name: form.name.trim(),
-          email: form.email.trim(),
-          phone: form.phone.trim() || undefined,
-          company_name: form.company.trim() || undefined,
-          service_required: form.service || undefined,
-          budget_range: form.budget || undefined,
-          message: form.message.trim(),
-        },
-      }).catch(() => {/* non-critical — lead already saved */});
 
       setSubmitted(true);
       setForm(initialForm);
@@ -193,7 +176,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                 >
                   <h3 className="font-semibold text-white mb-5">Reach Us Directly</h3>
                   <div className="space-y-4">
-                    <a href="mailto:hello@aktechnologies.io" className="flex items-center gap-3 group">
+                    <a href="mailto:info@aksolutionsandtech.in" className="flex items-center gap-3 group">
                       <div
                         className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors duration-200 group-hover:bg-blue-500/20"
                         style={{ background: 'rgba(37,99,235,0.15)' }}
@@ -202,7 +185,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                       </div>
                       <div>
                         <div className="text-xs" style={{ color: '#64748B' }}>Email</div>
-                        <div className="text-sm font-medium text-white">hello@aktechnologies.io</div>
+                        <div className="text-sm font-medium text-white">info@aksolutionsandtech.in</div>
                       </div>
                     </a>
                     <a
