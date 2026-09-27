@@ -40,7 +40,7 @@ export default function PrivacyPolicy({ onNavigate }: PrivacyPolicyProps) {
               Introduction
             </h2>
             <p>
-              At AK Solutions & Technologies Pvt Ltd, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, store, and safeguard information provided through our website (<a href="https://aktechnologies.io" className="text-white underline hover:text-neutral-300">aktechnologies.io</a>), products, applications, and technology services.
+              At AK Solutions & Technologies Pvt Ltd, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, store, and safeguard information provided through our website (<a href="https://www.aksolutionsandtech.in/" className="text-white underline hover:text-neutral-300">https://www.aksolutionsandtech.in/</a>), products, applications, and technology services.
             </p>
             <p className="mt-3">
               By using our website, products, or services, you agree to the collection and use of information in accordance with this Privacy Policy.
@@ -197,8 +197,8 @@ export default function PrivacyPolicy({ onNavigate }: PrivacyPolicyProps) {
               </p>
               <p>
                 <strong className="text-white">Website:</strong>{' '}
-                <a href="https://aksolutionsandtech.in" target="_blank" rel="noopener noreferrer" className="text-white underline hover:text-neutral-300">
-                  https://aksolutionsandtech.in
+                <a href="https://www.aksolutionsandtech.in/" target="_blank" rel="noopener noreferrer" className="text-white underline hover:text-neutral-300">
+                  https://www.aksolutionsandtech.in/
                 </a>
               </p>
             </div>

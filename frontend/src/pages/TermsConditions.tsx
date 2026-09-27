@@ -40,7 +40,7 @@ export default function TermsConditions({ onNavigate }: TermsConditionsProps) {
               Introduction
             </h2>
             <p>
-              Welcome to AK Solutions &amp; Technologies Pvt Ltd. These Terms &amp; Conditions govern your access to and use of our website (<a href="https://aktechnologies.io" className="text-white underline hover:text-neutral-300">aktechnologies.io</a>), software products, custom development solutions, and technology consulting services.
+              Welcome to AK Solutions &amp; Technologies Pvt Ltd. These Terms &amp; Conditions govern your access to and use of our website (<a href="https://www.aksolutionsandtech.in/" className="text-white underline hover:text-neutral-300">https://www.aksolutionsandtech.in/</a>), software products, custom development solutions, and technology consulting services.
             </p>
             <p className="mt-3">
               By accessing, browsing, or utilizing our website, software products, or engineering services, you acknowledge that you have read, understood, and agreed to be legally bound by these Terms &amp; Conditions.
@@ -247,8 +247,8 @@ export default function TermsConditions({ onNavigate }: TermsConditionsProps) {
               </p>
               <p>
                 <strong className="text-white">Website:</strong>{' '}
-                <a href="https://aktechnologies.io" target="_blank" rel="noopener noreferrer" className="text-white underline hover:text-neutral-300">
-                  https://aktechnologies.io
+                <a href="https://www.aksolutionsandtech.in/" target="_blank" rel="noopener noreferrer" className="text-white underline hover:text-neutral-300">
+                  https://www.aksolutionsandtech.in/
                 </a>
               </p>
             </div>
