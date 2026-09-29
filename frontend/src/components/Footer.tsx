@@ -169,9 +169,14 @@ export default function Footer({ onNavigate }: FooterProps) {
           className="py-7 flex flex-col sm:flex-row items-center justify-between gap-4"
           style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
         >
-          <p className="text-xs" style={{ color: '#64748B' }}>
-            &copy; {new Date().getFullYear()} AK Solutions & Technologies Pvt Ltd. All rights reserved.
-          </p>
+          <div className="flex flex-col items-center sm:items-start gap-1">
+            <p className="text-xs" style={{ color: '#64748B' }}>
+              &copy; {new Date().getFullYear()} AK Solutions & Technologies Pvt Ltd. All rights reserved.
+            </p>
+            <p className="text-sm font-medium" style={{ color: '#94A3B8' }}>
+              CIN: U62011AP2026PTC128532
+            </p>
+          </div>
           <div className="flex items-center gap-6">
             <button
               onClick={() => handleNav('privacy')}
